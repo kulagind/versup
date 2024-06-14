@@ -1,0 +1,36 @@
+{
+  "name": "vertag",
+  "version": "1.0.0",
+  "description": "Patch version by pushing tag",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kulagind/vertag.git"
+  },
+  "keywords": [
+    "version",
+    "git",
+    "tag",
+    "patch",
+    "minor",
+    "major",
+    "update",
+    "release",
+    "ci"
+  ],
+  "author": "Dmitrii Kulagin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kulagind/vertag/issues"
+  },
+  "homepage": "https://github.com/kulagind/vertag#readme",
+  "dependencies": {
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/shelljs": "^0.8.15"
+  }
+}

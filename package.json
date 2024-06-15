@@ -1,14 +1,17 @@
 {
-  "name": "vertag",
+  "name": "versup",
   "version": "1.0.0",
   "description": "Patch version by pushing tag",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/update-version.js"
+    "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=bin/index.js"
+  },
+  "bin": {
+    "versup": "bin/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kulagind/vertag.git"
+    "url": "git+https://github.com/kulagind/versup.git"
   },
   "keywords": [
     "version",
@@ -24,9 +27,9 @@
   "author": "Dmitrii Kulagin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kulagind/vertag/issues"
+    "url": "https://github.com/kulagind/versup/issues"
   },
-  "homepage": "https://github.com/kulagind/vertag#readme",
+  "homepage": "https://github.com/kulagind/versup#readme",
   "dependencies": {
     "shelljs": "^0.8.5",
     "zod": "^3.23.8"

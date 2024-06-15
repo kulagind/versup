@@ -1,5 +1,6 @@
 import { PatchStrategy } from "../enums/patch-strategy";
 import { Config } from "../interfaces/config.interface";
+import { echo } from "shelljs";
 
 export function resolveStrategy(
   config: Config,
@@ -16,7 +17,7 @@ export function resolveStrategy(
         return PatchStrategy.Patch;
     }
   } catch (e) {
-    console.log("Ошибка определения стратегии патча:", e);
+    echo("Error while defining patch strategy:", e);
     return PatchStrategy.Patch;
   }
 }

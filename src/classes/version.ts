@@ -1,4 +1,5 @@
 import { PatchStrategy } from "../enums/patch-strategy";
+import { echo } from "shelljs";
 
 export class Version {
   private readonly regexp = /([0-9]+)\.([0-9]+)\.([0-9]+)/g;
@@ -41,7 +42,7 @@ export class Version {
   private parse(tag: string = "0.0.0"): void {
     const parsed = this.regexp.exec(tag);
     if (!parsed) {
-      console.log(`Не удалось распарсить версию из тега '${tag}'`);
+      echo(`Version parsing from '${tag}' failed`);
       return;
     }
 
@@ -49,8 +50,8 @@ export class Version {
     this._minor = +parsed?.[2];
     this._patch = +parsed?.[3];
     if (isNaN(this._patch) || isNaN(this._minor) || isNaN(this._major)) {
-      console.log(
-        `Некорректная версия '${this._major}.${this._minor}.${this._patch}' в теге '${tag}'`
+      echo(
+        `Found incorrect version '${this._major}.${this._minor}.${this._patch}' in the tag '${tag}'`
       );
       return;
     }
@@ -63,6 +64,7 @@ export class Version {
   }
 
   private update(patcher?: PatchStrategy): void {
+    echo("Current version:", this.toString());
     switch (patcher) {
       case PatchStrategy.Minor:
         this._minor += 1;
@@ -75,6 +77,6 @@ export class Version {
         this._patch += 1;
         break;
     }
-    console.log("Новая версия:", this.toString());
+    echo("Next version:", this.toString());
   }
 }

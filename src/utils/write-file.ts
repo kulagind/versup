@@ -2,6 +2,7 @@ import { Version } from "../classes/version";
 import { Config } from "../interfaces/config.interface";
 import fs from "fs/promises";
 import { join } from "path";
+import { echo } from "shelljs";
 
 export async function writeFile(
   { write }: Config,
@@ -12,11 +13,10 @@ export async function writeFile(
   }
 
   try {
-    return fs.writeFile(
-      join(process.cwd(), write.fileName),
-      write.getContent(version)
-    );
+    const filePath = join(process.cwd(), write.fileName);
+    echo("Writing a file:", filePath);
+    return fs.writeFile(filePath, write.getContent(version));
   } catch (e) {
-    console.log("Ошибка записи в файл:", e);
+    echo("Error while writing a file:", e);
   }
 }

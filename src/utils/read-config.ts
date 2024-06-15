@@ -1,6 +1,7 @@
 import { Config } from "../interfaces/config.interface";
 import path from "path";
 import { Variable } from "../enums/variable";
+import { echo } from "shelljs";
 
 const DEFAULT_PATH = "version.config.js";
 const DEFAULT_CONFIG: Config = {
@@ -13,17 +14,14 @@ export async function readConfig(): Promise<Config> {
       process.cwd(),
       process.env[Variable.VER_CONFIG_PATH] ?? DEFAULT_PATH
     );
-    console.log(`Чтение конфигурации из '${pathToConfig}'`);
+    echo(`Reading a configuration from '${pathToConfig}'`);
     let config = await import(pathToConfig);
     config = Config.parse(config);
-    console.log("Найдена конфигурация:", JSON.stringify(config));
+    echo("Configuration has found:", JSON.stringify(config));
     return config;
   } catch (e) {
-    console.log("Не удалось импортировать конфигурацию:", e);
-    console.log(
-      "Используется стандартная конфигурация:",
-      JSON.stringify(DEFAULT_CONFIG)
-    );
+    echo("Import configuration failed:", e);
+    echo("Used default configuration:", JSON.stringify(DEFAULT_CONFIG));
     return DEFAULT_CONFIG;
   }
 }

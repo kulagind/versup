@@ -9,7 +9,7 @@ import { writeFile } from "./utils/write-file";
 
 (async () => {
   if (!which("git")) {
-    echo("Скрипт требует наличия git cli");
+    echo("This script requires git cli");
     exit(1);
   }
 

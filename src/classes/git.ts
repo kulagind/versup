@@ -1,4 +1,4 @@
-import { exec, ShellString, exit } from "shelljs";
+import { exec, ShellString, exit, echo } from "shelljs";
 import { Config } from "../interfaces/config.interface";
 
 export class Git {
@@ -7,11 +7,8 @@ export class Git {
   pushTag(): void {
     exec('git config --global user.email "bot@gmail.com"');
     exec('git config --global user.name "Bot"');
-    exec("git remote rm ssh_origin || true");
-    exec(`git remote add ssh_origin git@git:${process.env.CI_PROJECT_PATH}`);
-    exec(
-      `git push --push-option=ci.skip ssh_origin HEAD:${process.env.CI_COMMIT_REF_NAME}`
-    );
+    // exec("git remote rm ssh_origin || true");
+    // exec(`git remote add ssh_origin git@git:${process.env.CI_PROJECT_PATH}`);
     exec(`git push --push-option=ci.skip --tags`);
   }
 
@@ -19,7 +16,7 @@ export class Git {
     let result = exec(`git tag ${name}`);
 
     if (result.code !== 0) {
-      console.log(`Version ${name} already exists`);
+      echo(`Version ${name} already exists`);
 
       if (this.config?.deleteIfExists) {
         this.delete(name);

@@ -1,6 +1,4 @@
 import { Version } from "./classes/version";
-("use strict");
-
 import { echo, exit, which } from "shelljs";
 import { Git } from "./classes/git";
 import { readConfig } from "./utils/read-config";

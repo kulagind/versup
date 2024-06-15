@@ -2,9 +2,9 @@
   "name": "vertag",
   "version": "1.0.0",
   "description": "Patch version by pushing tag",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/update-version.js"
   },
   "repository": {
     "type": "git",
@@ -28,9 +28,11 @@
   },
   "homepage": "https://github.com/kulagind/vertag#readme",
   "dependencies": {
-    "shelljs": "^0.8.5"
+    "shelljs": "^0.8.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/shelljs": "^0.8.15"
+    "@types/shelljs": "^0.8.15",
+    "esbuild": "0.21.5"
   }
 }

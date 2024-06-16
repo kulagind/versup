@@ -1,14 +1,21 @@
 {
   "name": "versup",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Patch version by pushing tag",
-  "main": "dist/index.js",
+  "main": "bin/index.js",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=bin/index.js"
+    "build": "tsc -p . && npm run minify",
+    "minify": "esbuild bin/index.js --minify --allow-overwrite --outfile=bin/index.js"
   },
   "bin": {
     "versup": "bin/index.js"
   },
+  "files": [
+    "bin/",
+    "package.json",
+    "README.md",
+    "version.config.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kulagind/versup.git"
@@ -36,6 +43,7 @@
   },
   "devDependencies": {
     "@types/shelljs": "^0.8.15",
-    "esbuild": "0.21.5"
+    "esbuild": "0.21.5",
+    "typescript": "^5.4.5"
   }
 }

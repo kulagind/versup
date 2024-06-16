@@ -17,6 +17,6 @@ export async function writeFile(
     echo("Writing a file:", filePath);
     return fs.writeFile(filePath, write.getContent(version));
   } catch (e) {
-    echo("Error while writing a file:", e);
+    echo("Error while writing a file:", JSON.stringify(e));
   }
 }

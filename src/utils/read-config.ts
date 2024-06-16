@@ -20,7 +20,7 @@ export async function readConfig(): Promise<Config> {
     echo("Configuration has found:", JSON.stringify(config));
     return config;
   } catch (e) {
-    echo("Import configuration failed:", e);
+    echo("Import configuration failed:", JSON.stringify(e));
     echo("Used default configuration:", JSON.stringify(DEFAULT_CONFIG));
     return DEFAULT_CONFIG;
   }

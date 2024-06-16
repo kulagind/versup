@@ -1,15 +1,23 @@
 import { exec, ShellString, exit, echo } from "shelljs";
 import { Config } from "../interfaces/config.interface";
+import { Variable } from "../enums/variable";
 
 export class Git {
   constructor(private readonly config?: Config) {}
 
   pushTag(): void {
+    const remoteWithToken = process.env[Variable.REMOTE_WITH_TOKEN];
+    if (!remoteWithToken) {
+      echo("Variable REMOTE_WITH_TOKEN is not defined");
+      exit(1);
+    }
+
     exec('git config --global user.email "bot@gmail.com"');
     exec('git config --global user.name "Bot"');
-    // exec("git remote rm ssh_origin || true");
-    // exec(`git remote add ssh_origin git@git:${process.env.CI_PROJECT_PATH}`);
-    exec(`git push --push-option=ci.skip --tags`);
+
+    exec("git remote rm origin_with_token || true");
+    exec(`git remote add origin_with_token ${remoteWithToken}`);
+    exec(`git push origin_with_token --push-option=ci.skip --tags`);
   }
 
   createTag(name: string): void {

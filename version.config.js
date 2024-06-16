@@ -1,13 +1,29 @@
 /** This is an example of configuration file */
 module.exports = {
-  /** @type {boolean} */
+  /**
+   * Optional
+   * @type {boolean}
+   * @default true
+   **/
   deleteIfExists: true,
-  /** @type {RegExp} */
+  /**
+   * Optional
+   * @type {RegExp}
+   **/
   patch: /^(fix|refactor|chore)/gi,
-  /** @type {RegExp} */
+  /**
+   * Optional
+   * @type {RegExp}
+   **/
   minor: /^(feat)/gi,
-  /** @type {RegExp} */
+  /**
+   * Optional
+   * @type {RegExp}
+   **/
   major: /^(bc)/gi,
+  /**
+   * Optional
+   */
   write: {
     /** @type {string} */
     fileName: 'assets/version.json',

@@ -17,7 +17,7 @@ export function resolveStrategy(
         return PatchStrategy.Patch;
     }
   } catch (e) {
-    echo("Error while defining patch strategy:", e);
+    echo("Error while defining patch strategy:", JSON.stringify(e));
     return PatchStrategy.Patch;
   }
 }

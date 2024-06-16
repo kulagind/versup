@@ -20,15 +20,16 @@ export class Git {
     exec(`git push origin_with_token --push-option=ci.skip --tags`);
   }
 
-  createTag(name: string): void {
-    let result = exec(`git tag ${name}`);
+  createTag(name: string, commitMessages: string[]): void {
+    const message = commitMessages.length ? commitMessages.join("/n") : "";
+    let result = exec(`git tag -a ${name} -m "${message}"`);
 
     if (result.code !== 0) {
       echo(`Version ${name} already exists`);
 
       if (this.config?.deleteIfExists) {
         this.delete(name);
-        result = exec(`git tag ${name}`);
+        result = exec(`git tag -a ${name} -m "${message}"`);
       }
 
       if (result.code !== 0) {

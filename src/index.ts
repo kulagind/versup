@@ -20,7 +20,7 @@ import { writeFile } from "./utils/write-file";
     lastTag,
     patcher: resolveStrategy(config, commitMessages?.[0]),
   });
-  git.createTag(version.toString());
+  git.createTag(version.toString(), commitMessages);
   git.pushTag();
 
   if (config.write) {

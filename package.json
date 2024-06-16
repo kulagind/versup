@@ -1,6 +1,6 @@
 {
   "name": "versup",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Patch version by pushing tag",
   "main": "bin/index.js",
   "scripts": {

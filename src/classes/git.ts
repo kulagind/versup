@@ -55,8 +55,8 @@ export class Git {
     const lastTag = exec(`git describe --tags --abbrev=0 2>/dev/null`);
     let result: ShellString;
     /**
-     * Если тег не нейден - берем 1 последнее сообщение (коммит)
-     * Иначе, берем все последние коммиты до тега
+     * If tag in not found we will take only 1 last commit message
+     * Otherwise take all commit messages until last tag (excluding last tag commit messages)
      **/
     if (lastTag.code !== 0) {
       result = exec(`git log -1 --pretty=%B`);

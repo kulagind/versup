@@ -1,5 +1,5 @@
 import { PatchStrategy } from "../enums/patch-strategy";
-import { echo } from "shelljs";
+import { echo, exit } from "shelljs";
 
 export class Version {
   private readonly regexp = /([0-9]+)\.([0-9]+)\.([0-9]+)/g;
@@ -43,7 +43,7 @@ export class Version {
     const parsed = this.regexp.exec(tag);
     if (!parsed) {
       echo(`Version parsing from '${tag}' failed`);
-      return;
+      exit(1);
     }
 
     this._major = +parsed?.[1];
@@ -53,7 +53,7 @@ export class Version {
       echo(
         `Found incorrect version '${this._major}.${this._minor}.${this._patch}' in the tag '${tag}'`
       );
-      return;
+      exit(1);
     }
 
     const [prefix, postfix] = tag.split(
